@@ -321,5 +321,4 @@ public class PaymentService extends JFrame {
 		completeBtn.setBackground(new Color(162, 155, 254));
 		inputPanel.add(completeBtn);
 	}
-	
 }

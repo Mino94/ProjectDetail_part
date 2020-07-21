@@ -42,8 +42,6 @@ public class ProjectDetailComponents extends JFrame{
 		new ProjectInfoDAO();
 	}
 
-
-	
 	public JPanel MainComponent() {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
