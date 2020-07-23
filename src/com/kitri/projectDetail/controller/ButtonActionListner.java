@@ -81,38 +81,6 @@ public class ButtonActionListner extends JDialog implements ActionListener {
 	}
 //	public void readData(String i) {
 //		
-//		try {
-//			stmt = conn.createStatement();
-//			
-//			String sql = "select S_PROJECT_NAME, L_DESCRIPTION, S_PROJECT_IMAGE,N_PROJECT_NO from TB_PROJECT_INFO where N_PROJECT_NO ="+i;	
-//			System.out.println(sql);
-//			if(sql!=null) {
-//				rs=stmt.executeQuery(sql);
-//				while(rs.next()){
-//					str = rs.getString("S_PROJECT_NAME");
-//					String str2 = rs.getString("L_DESCRIPTION");
-//					String str3 = rs.getString("S_PROJECT_IMAGE");
-//					
-//					ImagePaint panel = new ImagePaint(new ImageIcon("D:\\eclipse-workspace\\swingFunding\\src\\img\\"+str3).getImage());
-//					if(imgPanel != null)
-//						imgPanel.add(panel);
-//					if(titleTextArea != null)
-//						titleTextArea.append(str);
-//					if(textArea != null)
-//						textArea.append(str2);
-//				}
-//			}
-//			
-//		}catch(Exception e2) {
-//			e2.printStackTrace();
-//			System.out.println("자료읽기 실패 : "+ e2);
-//		}finally {
-//			try {
-//				if (rs != null) rs.close();
-//				if(stmt != null) stmt.close();
-//				if(ps != null) ps.close();
-//			} catch (Exception e3) {
-//			}
-//		}
+		
 //	}
 }

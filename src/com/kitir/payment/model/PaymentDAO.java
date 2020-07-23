@@ -127,18 +127,15 @@ public class PaymentDAO {
 			System.out.println(sql);
 			rs=st.executeQuery(sql);
 			while(rs.next()){
-
-				
-//				imgPanel.add(panel);
-//				titleTextArea.append(str);
-//				textArea.append(str2);
 				arr2.add(new ProjectDTO(rs.getString(2),rs.getString(5),rs.getString(6)));
 		        ProjectDetailComponents pjd = new ProjectDetailComponents();
 		        ImagePaint panel = new ImagePaint(new ImageIcon("D:\\eclipse-workspace\\swingFunding\\src\\img\\"+rs.getString(6)).getImage());
-		        if(pjd == null) {
-		        	pjd.getTitleTextArea().append(rs.getString(2));
-		    		pjd.getTextArea().append(rs.getString(5));
-		        	pjd.getImgPanel().add(panel);
+		        if(pjd != null) {
+		        }else {
+//		        	pjd.getTitleTextArea().append(arr2.get(2).getS_project_name());
+//		        	pjd.getTextArea().append(rs.getString(5));
+//		        	pjd.getImgPanel().add(panel);
+//		        	System.out.println("xxxxxxxxxxxxxxxx");
 		        }
 				System.out.println(rs.getString(2)+" "+rs.getString(5) +" "+rs.getString(6));
 			}

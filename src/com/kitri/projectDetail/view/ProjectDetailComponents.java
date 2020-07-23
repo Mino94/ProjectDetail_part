@@ -49,13 +49,11 @@ public class ProjectDetailComponents extends JFrame{
 	}
 
 	public JPanel MainComponent() {
-
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(Color.WHITE);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
 
 		JPanel navPanel = new JPanel();
 		navPanel.setBackground(new Color(54, 33, 89));
@@ -217,7 +215,7 @@ public class ProjectDetailComponents extends JFrame{
 		return contentPane;
 	}
 
-	public static JTextArea getTitleTextArea() {
+	public JTextArea getTitleTextArea() {
 		return titleTextArea;
 	}
 
@@ -225,7 +223,7 @@ public class ProjectDetailComponents extends JFrame{
 		ProjectDetailComponents.titleTextArea = titleTextArea;
 	}
 
-	public static JTextArea getTextArea() {
+	public  JTextArea getTextArea() {
 		return textArea;
 	}
 
@@ -233,7 +231,7 @@ public class ProjectDetailComponents extends JFrame{
 		ProjectDetailComponents.textArea = textArea;
 	}
 
-	public static JPanel getImgPanel() {
+	public JPanel getImgPanel() {
 		return imgPanel;
 	}
 
