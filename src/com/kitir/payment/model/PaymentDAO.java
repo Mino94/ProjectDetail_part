@@ -1,5 +1,6 @@
 package com.kitir.payment.model;
 
+import java.awt.Font;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,8 +9,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PaymentDAO {
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
+import com.kitri.projectDetail.view.ImagePaint;
+import com.kitri.projectDetail.view.ProjectDetailComponents;
+
+public class PaymentDAO {
 	// Connection은 데이터베이스와 연결하는 객체이다.
 	Connection conn = null;
 	// ResultSet : 실행한 쿼리문의 값을 받는 객체
@@ -17,23 +24,16 @@ public class PaymentDAO {
 	Statement st = null; // 그냥 가져오는거
 	// PreparedStatement는 쿼리문에 ?를 사용해서 추가로 ?에 변수를 할당해 줄수 있도록 하는 객체
 	PreparedStatement ps = null; // ?넣어서 집어넣는거
+	
+	public ArrayList<ProjectDTO> arr2;
 
 	// 생성자
 	public PaymentDAO() {
-
 		try {
 			String user = "javauser";
 			String pw = "12345";
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-
-			// jdbc drive를 등록하는 과정
-			// class.forName을 호출하면 Driver가 자기자신을 초기화하여 DriverManager에 등록한다.
-			// 즉, 개발자가 따로 관리하지 않는 static 객체들이 알아서 DriverManager에 등록되는 것이다.
-			// 그래서 Class.forName()을 호출하고 나서 어떤 인자로도 전달하지 않고 바로 getConnection()을 호출해도 드라이버가 찾아진다.
-
-			// Driver Class를 로딩하면 객체가 생성되고, DriverManager에 등록된다.
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// connection으로 db와 연결 (객체 생성)
 			conn = DriverManager.getConnection(url, user, pw);
 
 		} catch (ClassNotFoundException cnfe) {
@@ -44,7 +44,15 @@ public class PaymentDAO {
 			System.out.println("Unkonwn error");
 			e.printStackTrace();
 		}
+
 	}
+	public ArrayList<ProjectDTO> getArr2() {
+			return arr2;
+	}
+	public void setArr2(ArrayList<ProjectDTO> arr2) {
+		this.arr2 = arr2;
+	}
+	
 	public void dbClose() {
 		try {
 			if (rs != null)
@@ -69,7 +77,7 @@ public class PaymentDAO {
 			ps.setString(4, data.S_ACCOUNTHOLDER);
 			ps.setString(5, data.S_BANK);
 			ps.setString(6, data.S_PAYTOOL);
-			
+
 			ps.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -83,7 +91,7 @@ public class PaymentDAO {
 			st = conn.createStatement();
 			String sql = "select * from TB_PROJECT_INFO";
 			rs = st.executeQuery(sql);
-			
+
 			while(rs.next()) {
 				arr.add(new ProjectDTO(rs.getString(2), rs.getInt(3)));
 			}
@@ -110,5 +118,44 @@ public class PaymentDAO {
 		}
 		return result;
 	}
+	public ArrayList<ProjectDTO> readData(String i) {
+		this.arr2 = new ArrayList<ProjectDTO>();
+		try {
+			st = conn.createStatement();
+
+			String sql = "select * from TB_PROJECT_INFO where N_PROJECT_NO ="+i;	
+			System.out.println(sql);
+			rs=st.executeQuery(sql);
+			while(rs.next()){
+
+				
+//				imgPanel.add(panel);
+//				titleTextArea.append(str);
+//				textArea.append(str2);
+				arr2.add(new ProjectDTO(rs.getString(2),rs.getString(5),rs.getString(6)));
+		        ProjectDetailComponents pjd = new ProjectDetailComponents();
+		        ImagePaint panel = new ImagePaint(new ImageIcon("D:\\eclipse-workspace\\swingFunding\\src\\img\\"+rs.getString(6)).getImage());
+		        if(pjd == null) {
+		        	pjd.getTitleTextArea().append(rs.getString(2));
+		    		pjd.getTextArea().append(rs.getString(5));
+		        	pjd.getImgPanel().add(panel);
+		        }
+				System.out.println(rs.getString(2)+" "+rs.getString(5) +" "+rs.getString(6));
+			}
+		}catch(Exception e2) {
+			e2.printStackTrace();
+			System.out.println("자료읽기 실패 : "+ e2);
+		}finally {
+			try {
+				if (rs != null) rs.close();
+				if(st != null) st.close();
+				if(ps != null) ps.close();
+			} catch (Exception e3) {
+			}
+		}
+		return arr2;
+	}
+	
+
 
 }

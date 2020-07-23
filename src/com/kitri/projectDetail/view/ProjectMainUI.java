@@ -24,14 +24,14 @@ public class ProjectMainUI  extends JFrame{
 	protected void MainFrameConfigs(String title) {
 		setTitle(title);
 		setBounds(100, 100, 1280, 720);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setResizable(false);
 		setLocationRelativeTo(null);
 	}
 	
-	public static void main(String[] args) {
-		SwingUtilities.invokeLater(()->{new ProjectMainUI();});
-	}
+//	public static void main(String[] args) {
+//		SwingUtilities.invokeLater(()->{new ProjectMainUI();});
+//	}
 	
 }

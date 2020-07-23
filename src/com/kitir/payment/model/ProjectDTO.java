@@ -19,6 +19,11 @@ public class ProjectDTO {
 		this.s_project_name = s_project_name;
 		this.target_price = target_price;
 	}
+	ProjectDTO(String s_project_name, String L_DESCRIPTION, String S_PROJECT_IMAGE){
+		this.s_project_name = s_project_name;
+		this.l_description = L_DESCRIPTION;
+		this.s_project_image = S_PROJECT_IMAGE;
+	}
 	
 	public int getN_project_no() {
 		return n_project_no;
